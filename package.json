@@ -3,13 +3,13 @@
   "description": "基于 vue-cli3 的 UI 组件",
   "version": "0.4.0",
   "private": false,
-  "main": "lib/index.js",
+  "main": "lib/lazybo-ui.common.js",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build:lib": "vue-cli-service build --modern --mode production --dest lib --target lib --name lazybo-ui packages/index.ts"
+    "lib": "vue-cli-service build --target lib --name lazybo-ui --dest lib packages/index.ts"
   },
   "dependencies": {
     "core-js": "^3.6.4",

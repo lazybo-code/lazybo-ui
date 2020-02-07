@@ -1,4 +1,4 @@
-import LaReaderBook from './reader-book/index';
+import LaReaderBook from './la-reader-book/index';
 // 所有组件列表
 const components = [
   LaReaderBook,
@@ -7,12 +7,6 @@ const components = [
 // @ts-ignore
 const install = (Vue) => {
   // 判断是否安装，安装过就不继续往下执行
-  // @ts-ignore
-  if (install.installed) { return; }
-  // @ts-ignore
-  install.installed = true;
-  // 遍历注册所有组件
-  // @ts-ignore
   components.map(component => Vue.component(component.name, component));
   // 下面这个写法也可以
 };
@@ -23,12 +17,8 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-export {
-  LaReaderBook
-};
-
 export default {
   install,
   // 所有组件，必须具有 install，才能使用 Vue.use()
-  ...components
+  LaReaderBook
 };
