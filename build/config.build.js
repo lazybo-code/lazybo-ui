@@ -2,23 +2,28 @@ const {resolve, getComponentEntries} = require('./utils');
 const pub = require('./config.pub');
 
 module.exports = {
+  productionSourceMap: false,
   outputDir: resolve('lib'),
   configureWebpack: {
     entry: {
       ...getComponentEntries('packages'),
     },
     output: {
-      filename: '[name]/index.js',
-      libraryTarget: 'commonjs2',
+      filename: '[name].js',
+      // filename: 'index.js',
+      chunkFilename: '[id].js',
+      libraryTarget: 'umd',
       libraryExport: 'default',
       library: 'lazybo-ui',
+      umdNamedDefine: true,
+      globalObject: 'typeof self !== \'undefined\' ? self : this'
     },
     resolve: pub.resolve,
   },
   css: {
     sourceMap: true,
     extract: {
-      filename: '[name]/style.css'
+      filename: 'theme/[name].css'
     }
   },
   chainWebpack: config => {
@@ -37,5 +42,5 @@ module.exports = {
         option.fallback.options.name = 'static/fonts/[name].[hash:8].[ext]';
         return option
       })
-  }
+  },
 };
