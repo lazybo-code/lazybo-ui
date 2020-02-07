@@ -1,7 +1,7 @@
 {
   "name": "lazybo-ui",
   "description": "基于 vue-cli3 的 UI 组件",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": false,
   "main": "lib/lazybo-ui.common.js",
   "license": "MIT",
