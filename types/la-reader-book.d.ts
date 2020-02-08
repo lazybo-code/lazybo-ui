@@ -1,5 +1,3 @@
-import {Vue} from 'vue-property-decorator';
+import {LazyboUIComponent} from './component';
 
-export declare class LaReaderBook extends Vue {
-
-}
+export declare class LaReaderBook extends LazyboUIComponent {}

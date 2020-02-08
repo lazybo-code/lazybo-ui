@@ -1,9 +1,10 @@
 {
   "name": "lazybo-ui",
   "description": "基于 vue-cli3 的 UI 组件",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": false,
   "main": "lib/lazybo-ui.common.js",
+  "style": "lib/theme/index.css",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -19,18 +20,19 @@
     "vue-router": "^3.1.5"
   },
   "devDependencies": {
-    "babel-plugin-component": "^1.1.1",
+    "element-ui": "^2.13.0",
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-router": "^4.2.0",
     "@vue/cli-plugin-typescript": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
+    "babel-plugin-component": "^1.1.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
+    "terser-webpack-plugin": "latest",
     "typescript": "~3.7.5",
     "vue-loader": "latest",
-    "vue-template-compiler": "^2.6.11",
-    "terser-webpack-plugin": "latest"
+    "vue-template-compiler": "^2.6.11"
   },
   "repository": {
     "type": "git",

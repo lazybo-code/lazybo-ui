@@ -1,9 +1,8 @@
+import {Vue as _Vue} from 'vue-property-decorator';
 import LaReaderBook from './src/main.vue';
-// @ts-ignore
-LaReaderBook.install = (vue) => {
+
+(LaReaderBook as any).install = (vue: typeof _Vue) => {
   vue.component(LaReaderBook.name, LaReaderBook);
 };
-export {
-  LaReaderBook
-}
+
 export default LaReaderBook;

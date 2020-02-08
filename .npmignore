@@ -26,7 +26,6 @@ yarn-error.log*
 build/
 public/
 examples/
-packages/
 tsconfig.json
 vue.config.js
 babel.config.js
