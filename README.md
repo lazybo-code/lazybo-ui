@@ -1,24 +1,13 @@
-# lazybo-ui
-
-## Project setup
-```
-yarn install
+# 安装
+```base
+npm install lazybo-ui -S
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# 使用
+```typescript
+import Vue from 'vue'
+import LazyboUI from 'lazybo-ui'
+import 'lazybo-ui/lib/lazybo-ui.css'
 
-### Compiles and minifies for production
+Vue.use(LazyboUI);
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
