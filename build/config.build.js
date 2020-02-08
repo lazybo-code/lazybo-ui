@@ -10,9 +10,9 @@ module.exports = {
     },
     output: {
       filename: '[name].js',
-      libraryTarget: 'commonjs2',
+      libraryTarget: 'umd',
       libraryExport: 'default',
-      library: 'lazybo-ui',
+      library: 'LazyboUI',
     },
     resolve: pub.resolve,
   },
