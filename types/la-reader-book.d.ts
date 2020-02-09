@@ -1,3 +1,3 @@
 import {LazyboUIComponent} from './component';
 
-export declare class LaReaderBook extends LazyboUIComponent {}
+export default class LaReaderBook extends LazyboUIComponent {}
