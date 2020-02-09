@@ -15,7 +15,7 @@ module.exports = {
   productionSourceMap: false,
   pages: {
     index: {
-      entry: 'examples/main.ts',
+      entry: 'examples/main.js',
       template: 'public/index.html',
       filename: 'index.html'
     }
@@ -31,7 +31,7 @@ module.exports = {
   // 扩展 webpack 配置，使 packages 加入编译
   chainWebpack: (config) => {
     config.module
-      .rule('ts')
+      .rule('js')
       .include.add(join(process.cwd(), 'src'))
       .end();
     // 设置别名
@@ -42,7 +42,7 @@ module.exports = {
     // 配置别名
     config.extensions = aliasConfig.resolve;
     config.module
-      .rule('ts')
+      .rule('js')
       .include.add(/packages/)
       .end()
       .use('babel')
@@ -81,25 +81,3 @@ module.exports = {
     stylelint: {}
   }
 };
-
-// const devConfig = require('./build/config.dev');
-// const buildConfig = require('./build/config.build');
-//
-// module.exports = process.env.NODE_ENV === 'development' ? devConfig : buildConfig;
-// // module.exports = {
-// //   publicPath: '/',
-// //   outputDir: 'lib',
-// //   productionSourceMap: false,
-// //   configureWebpack: {
-// //     performance: {
-// //       hints: false
-// //     }
-// //   },
-// //   pages: {
-// //     index: {
-// //       entry: 'examples/main.ts',
-// //       template: 'public/index.html',
-// //       filename: 'index.html',
-// //     }
-// //   },
-// // };

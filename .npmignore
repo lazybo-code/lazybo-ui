@@ -24,8 +24,10 @@ yarn-error.log*
 # 以下是新增的
 # 要忽略目录和指定文件
 build/
-public/
+config/
 examples/
+public/
+script/
 tsconfig.json
 vue.config.js
 babel.config.js

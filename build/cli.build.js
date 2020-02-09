@@ -1,4 +1,5 @@
 const { run } = require('runjs');
+const { addons } = require('../config/rollup.build.config.js');
 const { getAssetsPath, chalkConsole, resolve, fsExistsSync, getComponentEntries } = require('./utils');
 const { styleOutputPath } = require('../config/index');
 const { move, fileDisplay } = require('../script/file-handle');
@@ -20,7 +21,7 @@ const libList = getComponentEntries('packages');
 Object.keys(libList).forEach((moduleName) => {
   pkg.push({ input: libList[moduleName], output: moduleName })
 });
-// pkg = pkg.concat(addons);
+pkg = pkg.concat(addons);
 pkg.forEach(build);
 // 删除多余文件
 rimraf(getAssetsPath('./demo.html'), function() {});
@@ -39,5 +40,12 @@ fileDisplay(getAssetsPath(), (file) => {
     move(resolve(file), resolve(file.replace(reg, '')))
   }
 });
-
+// 删除umd 文件
+fileDisplay(getAssetsPath(), (file) => {
+  const reg = /.umd/;
+  if (reg.test(file)) {
+    file = `../${file}`;
+    rimraf(resolve(file), function() {});
+  }
+});
 chalkConsole.success();

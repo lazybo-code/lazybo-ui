@@ -1,7 +1,7 @@
 {
   "name": "lazybo-ui",
   "description": "基于 vue-cli3 的 UI 组件",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": false,
   "main": "lib/index.js",
   "style": "lib/theme/index.css",
@@ -9,32 +9,24 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
     "lib:cli": "cross-env rimraf ./lib && node ./build/cli.build.js"
   },
-  "dependencies": {
-    "cross-env": "^7.0.0",
-    "runjs": "^4.4.2"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-router": "^4.2.0",
-    "@vue/cli-plugin-typescript": "^4.2.0",
+    "@vue/cli-plugin-vuex": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
-    "babel-plugin-component": "^1.1.1",
     "core-js": "^3.6.4",
-    "element-ui": "^2.13.0",
-    "progress-bar-webpack-plugin": "^2.1.0",
+    "cross-env": "^7.0.0",
+    "runjs": "^4.4.2",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
-    "terser-webpack-plugin": "latest",
-    "typescript": "~3.7.5",
     "vue": "^2.6.11",
-    "vue-class-component": "^7.2.2",
-    "vue-loader": "latest",
-    "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.1.2"
   },
   "repository": {
     "type": "git",

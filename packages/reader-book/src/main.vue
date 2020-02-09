@@ -37,107 +37,91 @@
   </div>
 </template>
 
-<script lang="ts">
-  import {Component, Emit, Prop, Ref, Vue} from 'vue-property-decorator';
-
-  interface ISlotData {
-    page: {
-      total: number;
-      current: number;
-    };
-    title: string;
-  }
-
-  type toEndType = 0 | 1 | 2 | 3;
-
-  @Component({
-    name: 'la-reader-book'
-  })
-  export default class LaReaderBook extends Vue {
-    @Prop({default: ''}) public readonly title!: string;
-    @Prop({default: ''}) public readonly content!: string;
-    @Prop({default: 16}) public readonly clearance!: number;
-    @Prop({default: 1.125}) public readonly fontSize!: number;
-    @Prop({default: ''}) public readonly className!: string;
-    @Prop({default: 0.3}) public readonly animationSeconds!: number;
-    @Prop({default: false}) public readonly noLeftRightClick!: boolean;
-
-    @Ref('readerBook') protected readonly readerBookElement!: HTMLElement;
-
-    public pageTotal: number = 0;
-    public pageCurrent: number = 0;
-
-    protected translateX: number = 0;
-
-    public previousPage(): void {
-      if (this.noLeftRightClick) return;
-      if (this.pageCurrent <= 0) {
-        this.onToEnd(0);
-        return;
+<script>
+  export default {
+    name: 'la-reader-book',
+    props: {
+      title: {type: String, default: ''},
+      content: {type: String, default: ''},
+      clearance: {type: Number, default: 16},
+      fontSize: {type: Number, default: 1.125},
+      className: {type: String, default: ''},
+      animationSeconds: {type: Number, default: 0.3},
+      noLeftRightClick: {type: Boolean, default: false},
+    },
+    data: () => ({
+      pageTotal: 0,
+      pageCurrent: 0,
+      translateX: 0,
+    }),
+    computed: {
+      slotData() {
+        return {
+          page: {
+            total: this.pageTotal,
+            current: this.pageCurrent + 1
+          },
+          title: this.title,
+        };
+      },
+      readerBook() {
+        return this.content.split(/\n/g);
       }
-      this.pageCurrent--;
-      this.calculateTranslateX();
-      if (this.pageCurrent - 1 === 0) {
-        this.onToEnd(1);
-      }
-    }
-    public nextPage(): void {
-      if (this.noLeftRightClick) return;
-      if (this.calculatePage(this.pageCurrent)) {
-        this.onToEnd(3);
-        return;
-      }
-      this.pageCurrent++;
-      this.calculateTranslateX();
-      if (this.pageCurrent + 1 === this.pageCurrent) {
-        this.onToEnd(2);
-      }
-    }
-    public calculateTotalPage(): void {
-      this.$nextTick(() => {
-        let pageCount = 0;
-        while (!this.calculatePage(pageCount)) {
-          pageCount++;
+    },
+    methods: {
+      created() {
+        this.calculateTotalPage();
+      },
+      previousPage() {
+        if (this.noLeftRightClick) return;
+        if (this.pageCurrent <= 0) {
+          this.onToEnd(0);
+          return;
         }
-        this.pageTotal = pageCount + 1;
-      })
-    }
-
-    @Emit()
-    public onToEnd(type: toEndType): toEndType {
-      return type;
-    }
-
-    @Emit()
-    public onCenter(): void {
-      return;
-    }
-
-    get slotData(): ISlotData {
-      return {
-        page: {
-          total: this.pageTotal,
-          current: this.pageCurrent + 1
-        },
-        title: this.title,
-      };
-    }
-    get readerBook(): string[] {
-      return this.content.split(/\n/g);
-    }
-
-    protected created(): void {
-      this.calculateTotalPage();
-    }
-    protected calculateTranslateX(): void {
-      this.translateX = -(this.readerBookElement.offsetWidth + this.clearance) * (this.pageCurrent);
-    }
-    protected calculatePage(page: number): boolean {
-      const number = (this.readerBookElement.offsetWidth) * (page + 1);
-      return this.readerBookElement.scrollWidth - number <= this.readerBookElement.offsetWidth;
+        this.pageCurrent--;
+        this.calculateTranslateX();
+        if (this.pageCurrent - 1 === 0) {
+          this.onToEnd(1);
+        }
+      },
+      nextPage() {
+        if (this.noLeftRightClick) return;
+        if (this.calculatePage(this.pageCurrent)) {
+          this.onToEnd(3);
+          return;
+        }
+        this.pageCurrent++;
+        this.calculateTranslateX();
+        if (this.pageCurrent + 1 === this.pageCurrent) {
+          this.onToEnd(2);
+        }
+      },
+      calculateTotalPage() {
+        this.$nextTick(() => {
+          let pageCount = 0;
+          while (!this.calculatePage(pageCount)) {
+            pageCount++;
+          }
+          this.pageTotal = pageCount + 1;
+        })
+      },
+      onToEnd(type) {
+        this.$emit('onToEnd', type);
+      },
+      onCenter() {
+        this.$emit('onCenter')
+      },
+      calculateTranslateX() {
+        this.translateX = -(this.$refs.readerBook.offsetWidth + this.clearance) * (this.pageCurrent);
+      },
+      calculatePage(page) {
+        const number = (this.$refs.readerBook.offsetWidth) * (page + 1);
+        return this.$refs.readerBook.scrollWidth - number <= this.$refs.readerBook.offsetWidth;
+      }
     }
   }
 </script>
+
 <style scoped lang="scss">
   $--content-top: 30px;
   $--content-bottom: 20px;
