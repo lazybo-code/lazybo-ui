@@ -1,7 +1,7 @@
-import LaReaderBook from './src/main.vue'
+import ReaderBook from './src/main.vue'
 
-LaReaderBook.install = (vue) => {
-  vue.component(LaReaderBook.name, LaReaderBook)
+ReaderBook.install = (vue) => {
+  vue.component(name, ReaderBook)
 };
 
-export default LaReaderBook
+export default ReaderBook

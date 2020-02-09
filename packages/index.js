@@ -1,7 +1,7 @@
-import LaReaderBook from '../packages/reader-book/index'
+import ReaderBook from '../packages/reader-book/index'
 import { version } from '../package.json'
 
-const components = [LaReaderBook];
+const components = [ReaderBook];
 
 const install = function (Vue) {
   // 判断是否安装
@@ -17,4 +17,4 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-export default { version, install, LaReaderBook }
+export default { version, install, ReaderBook }

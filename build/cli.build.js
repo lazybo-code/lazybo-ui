@@ -5,8 +5,8 @@ const { styleOutputPath } = require('../config/index');
 const { move, fileDisplay } = require('../script/file-handle');
 const rimraf = require('rimraf');
 const fs = require('fs');
+const chalk = require('chalk');
 const cssFiles = [];
-
 function build({ input, output } = {}, index, arr) {
   chalkConsole.building(index + 1, arr.length);
   run(
@@ -23,16 +23,17 @@ Object.keys(libList).forEach((moduleName) => {
 });
 pkg = pkg.concat(addons);
 pkg.forEach(build);
-// 删除多余文件
+console.log(chalk.green(`～～～～～～～～～～～～～～～～～～～～～～～～～`));
+console.log(chalk.green(`* 删除多余文件`));
 rimraf(getAssetsPath('./demo.html'), function() {});
-// 创建样式文件夹
+console.log(chalk.green(`* 创建样式文件夹`));
 fs.mkdirSync(getAssetsPath(styleOutputPath));
-// 拷贝css文件到单独目录
+console.log(chalk.green(`* 拷贝css文件到单独目录`));
 cssFiles.forEach((cssFile) => {
   fsExistsSync(getAssetsPath(cssFile)) &&
     move(getAssetsPath(cssFile), getAssetsPath(styleOutputPath + '/' + cssFile))
 });
-// 重命名common文件
+console.log(chalk.green(`* 重命名common文件`));
 fileDisplay(getAssetsPath(), (file) => {
   const reg = /.common/;
   if (reg.test(file)) {
@@ -40,7 +41,7 @@ fileDisplay(getAssetsPath(), (file) => {
     move(resolve(file), resolve(file.replace(reg, '')))
   }
 });
-// 删除umd 文件
+console.log(chalk.green(`* 删除umd文件`));
 fileDisplay(getAssetsPath(), (file) => {
   const reg = /.umd/;
   if (reg.test(file)) {

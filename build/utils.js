@@ -16,12 +16,11 @@ module.exports = {
   env: process.env.NODE_ENV,
   chalkConsole: {
     success: () => {
-      console.log(chalk.green(`～～～～～～～～～～～～～～～～～～～～～～～～～`));
-      console.log(chalk.green(`～～～～～～～       打包成功!      ～～～～～～～`));
+      console.log(chalk.green(`** 打包成功!`));
       console.log(chalk.green(`～～～～～～～～～～～～～～～～～～～～～～～～～`))
     },
     building: (index, total) => {
-      console.log(chalk.blue(`打包第${index}/${total}个文件...`))
+      console.log(chalk.green(`# ${index}/${total}`));
     }
   },
   fsExistsSync: (_path) => {
@@ -34,7 +33,7 @@ module.exports = {
   },
   getComponentEntries(path) {
     let files = fs.readdirSync(resolve(path));
-    const componentEntries = files.reduce((ret, item) => {
+    return files.reduce((ret, item) => {
       const itemPath = join(path, item);
       const isDir = fs.statSync(itemPath).isDirectory();
       if (isDir) {
@@ -45,8 +44,6 @@ module.exports = {
       }
       return ret
     }, {});
-    console.dir(componentEntries);
-    return componentEntries
   },
 };
 
