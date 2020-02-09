@@ -1,12 +1,11 @@
-import {Vue as _Vue} from 'vue-property-decorator';
-import LaReaderBook from './la-reader-book/index';
+import LaReaderBook from './reader-book/index';
 // 所有组件列表
 const components = [
   LaReaderBook,
 ];
 
 // 定义 install 方法，接收 Vue 作为参数
-const install = (Vue: typeof _Vue, opt = {}) => {
+const install = (Vue, opt = {}) => {
   // 判断是否安装，安装过就不继续往下执行
   components.forEach(component => Vue.component(component.name, component));
   // 下面这个写法也可以

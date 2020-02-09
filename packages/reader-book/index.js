@@ -1,7 +1,6 @@
-import {Vue as _Vue} from 'vue-property-decorator';
 import LaReaderBook from './src/main.vue';
 
-(LaReaderBook as any).install = (vue: typeof _Vue) => {
+LaReaderBook.install = (vue) => {
   vue.component(LaReaderBook.name, LaReaderBook);
 };
 

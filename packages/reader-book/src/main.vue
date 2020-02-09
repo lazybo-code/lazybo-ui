@@ -51,7 +51,7 @@
   type toEndType = 0 | 1 | 2 | 3;
 
   @Component({
-    name: 'LaReaderBook'
+    name: 'la-reader-book'
   })
   export default class LaReaderBook extends Vue {
     @Prop({default: ''}) public readonly title!: string;
