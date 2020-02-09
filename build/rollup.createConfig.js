@@ -87,6 +87,7 @@ function build(builds) {
   const total = builds.length;
   const next = async () => {
     chalkConsole.building(buildCount + 1, total);
+    console.log(builds[buildCount]);
     await buildEntry(builds[buildCount]);
     buildCount++;
     buildCount < total ? next() : chalkConsole.success()
@@ -99,13 +100,12 @@ function build(builds) {
  */
 async function buildEntry(config) {
   const { output, suffix, input, format, moduleName } = config;
-
   const inputOptions = {
     input,
     external: Object.keys(externalMap),
     plugins: createPlugins(config)
   };
-  const fullName = output + suffix;
+  const fullName = output + (suffix || '.js');
   const file = getAssetsPath(fullName);
   const outOptions = {
     // dir: getAssetsPath(),
