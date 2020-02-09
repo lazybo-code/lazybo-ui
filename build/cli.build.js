@@ -15,9 +15,10 @@ function build({ input, output } = {}, index, arr) {
   cssFiles.push(`${output}.css`)
 }
 
-let pkg = [];
-const libList = getComponentEntries('packages');
-// return;
+let pkg = [
+  { input: 'src/index.js', output: 'index' }
+];
+let libList = getComponentEntries('packages');
 Object.keys(libList).forEach((moduleName) => {
   pkg.push({ input: libList[moduleName], output: moduleName })
 });
