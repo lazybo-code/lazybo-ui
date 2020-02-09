@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'la-button',
+    name: 'LaButton',
     props: {},
     data: () => ({}),
     computed: {},

@@ -1,7 +1,6 @@
 import Vue from 'vue';
-import LaButton from './la-button'
-import LaReaderBook from './la-reader-book'
+import {LazyboUIComponent} from "./component";
 
 export function install (vue: typeof Vue, options: {}): void
-export class readerBook extends LaReaderBook {}
-export class Button extends LaButton {}
+export declare class LaButton extends LazyboUIComponent {}
+export declare class LaReaderBook extends LazyboUIComponent {}

@@ -39,7 +39,7 @@
 
 <script>
   export default {
-    name: 'la-reader-book',
+    name: 'LaReaderBook',
     props: {
       title: {type: String, default: ''},
       content: {type: String, default: ''},

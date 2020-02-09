@@ -1,7 +1,7 @@
 {
   "name": "lazybo-ui",
   "description": "基于 vue-cli3 的 UI 组件",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "main": "lib/index.js",
   "style": "lib/theme/index.css",
@@ -64,5 +64,35 @@
   "bugs": {
     "url": "https://github.com/lazybo-code/lazybo-ui/issues"
   },
-  "homepage": "https://github.com/lazybo-code/lazybo-ui#readme"
+  "homepage": "https://github.com/lazybo-code/lazybo-ui#readme",
+  "lint-staged": {
+    "src/**/*.{js}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "packages/**/*.{js,jsx,vue}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "pageages/**/*.{html,vue,css,less,scss,styl}": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "examples/**/*.{js,jsx,vue}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "examples/**/*.{html,vue,css,less,scss,styl}": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "docs/**/*.{js,jsx,vue}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }
