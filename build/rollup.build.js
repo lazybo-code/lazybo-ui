@@ -1,4 +1,5 @@
 const fs = require('fs');
+const libList = require('../src/lib-list.js');
 const { formatTypeList, addons, esDir } = require('../config/rollup.build.config.js');
 const { styleOutputPath } = require('../config/index');
 const { build } = require('./rollup.createConfig');
@@ -8,15 +9,14 @@ fs.mkdirSync(getAssetsPath(styleOutputPath));
 if ([...formatTypeList, ...addons].some((item) => item.format === esDir)) {
   fs.mkdirSync(getAssetsPath(esDir))
 }
-let pkg = [
-  { input: 'src/index.js', output: 'index' }
-];
-let libList = getComponentEntries('packages');
+let pkg = [];
 formatTypeList.forEach(({ format, min, suffix } = {}) => {
   Object.keys(libList).forEach((moduleName) => {
-    pkg.push({ input: libList[moduleName], output: moduleName })
-  });
+    const { input, output } = libList[moduleName];
+    pkg.push({ min, format, suffix, moduleName, input, output: `${output}` })
+  })
 });
 pkg = pkg.concat(addons);
+
 build(pkg);
 // pkg.forEach(build)
