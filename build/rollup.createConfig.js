@@ -50,12 +50,7 @@ function createPlugins({ min } = {}) {
     postcss({
       plugins: [simplevars(), nested(), cssnext({ warnForDuplicates: false }), cssnano()],
       use: [
-        [
-          'less',
-          {
-            javascriptEnabled: true
-          }
-        ]
+        ['less', {javascriptEnabled: true}],
       ],
       inject: false,
       // sourceMap: true,

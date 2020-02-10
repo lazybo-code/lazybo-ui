@@ -1,7 +1,7 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
-const resolve = (dir) => path.resolve(__dirname, '..', dir)
+const resolve = (dir) => path.resolve(__dirname, '..', dir);
 
 /**
  * 移动文件
@@ -27,9 +27,9 @@ function copy(origin, target) {
   }
 
   fs.readdirSync(origin).forEach((file) => {
-    let originFile = path.join(origin, file)
-    let targetFile = path.join(target, file)
-    let stat = fs.statSync(originFile)
+    let originFile = path.join(origin, file);
+    let targetFile = path.join(target, file);
+    let stat = fs.statSync(originFile);
     if (stat.isDirectory()) {
       copy(originFile, targetFile)
     } else if (!fs.existsSync(targetFile)) {
@@ -52,14 +52,14 @@ function fileDisplay(filePath, callback) {
       // 遍历读取到的文件列表
       files.forEach(function(filename) {
         // 获取当前文件的绝对路径
-        let filedir = path.join(filePath, filename)
+        let filedir = path.join(filePath, filename);
         // 根据文件路径获取文件信息，返回一个fs.Stats对象
         fs.stat(filedir, function(eror, stats) {
           if (eror) {
             // console.warn('获取文件stats失败')
           } else {
-            let isFile = stats.isFile() // 是文件
-            let isDir = stats.isDirectory() // 是文件夹
+            let isFile = stats.isFile(); // 是文件
+            let isDir = stats.isDirectory(); // 是文件夹
             if (isFile) {
               callback(filedir)
             } else if (isDir) {
@@ -75,4 +75,4 @@ module.exports = {
   move,
   copy,
   fileDisplay
-}
+};

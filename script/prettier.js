@@ -6,15 +6,15 @@
  *----------*****--------------
  */
 
-const glob = require('glob')
-const prettier = require('prettier')
-const fs = require('fs')
+const glob = require('glob');
+const prettier = require('prettier');
+const fs = require('fs');
 
-const prettierConfigPath = require.resolve('../prettier.config.js')
+const prettierConfigPath = require.resolve('../prettier.config.js');
 
-let didError = false
+let didError = false;
 
-let files = []
+let files = [];
 
 const ignoreFiles = [
   '**/node_modules/**',
@@ -27,7 +27,7 @@ const ignoreFiles = [
   '**/components/style/color/**',
   '**/dist/**',
   '_site/**'
-]
+];
 
 const prettierPaths = [
   'src/**/*.ts*',
@@ -48,13 +48,13 @@ const prettierPaths = [
   'examples/**/*.less',
   'examples/**/*.scss',
   'examples/**/*.vue'
-]
+];
 prettierPaths.forEach((path) => {
   const file = glob.sync(path, {
     ignore: ignoreFiles
-  })
+  });
   files = files.concat(file)
-})
+});
 
 // // get all ts files
 // const tsFiles = glob.sync('src/**/*.ts*', {
@@ -86,30 +86,30 @@ if (!files.length) {
 files.forEach((file) => {
   const options = prettier.resolveConfig.sync(file, {
     config: prettierConfigPath
-  })
-  const fileInfo = prettier.getFileInfo.sync(file)
+  });
+  const fileInfo = prettier.getFileInfo.sync(file);
   if (fileInfo.ignored) {
     return
   }
   try {
-    const input = fs.readFileSync(file, 'utf8')
+    const input = fs.readFileSync(file, 'utf8');
     const withParserOptions = {
       ...options,
       parser: fileInfo.inferredParser
-    }
-    const output = prettier.format(input, withParserOptions)
+    };
+    const output = prettier.format(input, withParserOptions);
     if (output !== input) {
-      fs.writeFileSync(file, output, 'utf8')
+      fs.writeFileSync(file, output, 'utf8');
       // eslint-disable-next-line no-console
       console.log(`\x1b[34m ${file} is prettier`)
     }
   } catch (e) {
     didError = true
   }
-})
+});
 
 if (didError) {
   process.exit(1)
 }
 // eslint-disable-next-line no-console
-console.log('\x1b[32m prettier success!')
+console.log('\x1b[32m prettier success!');

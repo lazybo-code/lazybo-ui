@@ -1,6 +1,6 @@
 <template>
   <div class="lazy-button">
-    lazy-button
+    {{title}}
   </div>
 </template>
 
@@ -8,7 +8,9 @@
   export default {
     name: 'LaButton',
     props: {},
-    data: () => ({}),
+    data: () => ({
+      title: '',
+    }),
     computed: {},
     methods: {}
   }
