@@ -1,6 +1,6 @@
 import LaButton from './src/main.vue'
 
-LaButton.install = (vue) => {
+LaButton.install = function(vue) {
   vue.component(name, LaButton)
 };
 

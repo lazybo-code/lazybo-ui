@@ -1,5 +1,5 @@
-import ReaderBook from '../packages/reader-book/index'
-import Button from '../packages/button/index'
+import ReaderBook from '../packages/reader-book/index.js'
+import Button from '../packages/button/index.js'
 import { version } from '../package.json'
 
 const components = [
