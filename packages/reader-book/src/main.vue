@@ -65,6 +65,7 @@
         };
       },
       readerBook() {
+        this.calculateTotalPage();
         return this.content.split(/\n/g);
       }
     },
@@ -98,11 +99,7 @@
       },
       calculateTotalPage() {
         this.$nextTick(() => {
-          let pageCount = 0;
-          while (!this.calculatePage(pageCount)) {
-            pageCount++;
-          }
-          this.pageTotal = pageCount + 1;
+          this.pageTotal = parseInt(this.$refs.readerBook.scrollWidth / (this.$refs.readerBook.offsetWidth));
         })
       },
       onToEnd(type) {
