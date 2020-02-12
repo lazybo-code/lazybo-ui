@@ -1,0 +1,17 @@
+
+
+/**
+ * 阅读
+ */
+$-reader-book-content-top: 30px;
+$-reader-book-content-bottom: 20px;
+$--reader-book-cover-width: calc(100% / 3);
+$--reader-book-cover-height: calc(100% - 2rem);
+
+@mixin absolute-full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}

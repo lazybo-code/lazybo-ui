@@ -1,7 +1,7 @@
 <template>
-  <div class="lazy-button">
-    {{title}}
-  </div>
+  <button class="lazy-button">
+    <slot/>
+  </button>
 </template>
 
 <script>
@@ -15,10 +15,6 @@
     methods: {}
   }
 </script>
-
 <style scoped lang="scss">
-  .lazy-button {
-    color: #fff;
-    background: #2c3e50;
-  }
+  @import "../../../styles/scss/button";
 </style>

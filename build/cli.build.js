@@ -42,4 +42,12 @@ fileDisplay(getAssetsPath(), (file) => {
     move(resolve(file), resolve(file.replace(reg, '')))
   }
 });
+console.log(chalk.green(`* 删除umd文件`));
+fileDisplay(getAssetsPath(), (file) => {
+  const reg = /.umd/;
+  if (reg.test(file)) {
+    file = `../${file}`;
+    rimraf(resolve(file), function() {});
+  }
+});
 chalkConsole.success();

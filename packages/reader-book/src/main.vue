@@ -6,14 +6,18 @@
         <section
           ref="readerBook"
           class="lazy-reader-book"
-          :style="{transform: `translateX(${translateX}px)`, transition: `all ${animationSeconds}s ease`, fontSize: `${fontSize}rem`}">
+          :style="{transform: `translateX(${translateX+move}px)`, transition: `all ${animationSeconds}s ease`, fontSize: `${fontSize}rem`}">
           <h3 v-if="title">{{ title }}</h3>
           <p v-for="(item, index) in readerBook" :key="index">{{ item }}</p>
         </section>
       </article>
     </content>
     <!-- 全屏覆盖区域 -->
-    <div class="lazy-reader-cover">
+    <div
+      class="lazy-reader-cover"
+      @touchstart="touchStart"
+      @touchend="touchEnd"
+      @touchmove="touchMove">
       <!-- 上方数据 -->
       <div class="lazy-cover-top">
         <h1 v-if="pageCurrent > 0" class="lazy-read-book-name">
@@ -53,6 +57,8 @@
       pageTotal: 0,
       pageCurrent: 0,
       translateX: 0,
+      startPoint: 0,
+      move: 0,
     }),
     computed: {
       slotData() {
@@ -70,6 +76,23 @@
       }
     },
     methods: {
+      touchStart(e) {
+        this.startPoint = e.touches[0].screenX;
+      },
+      touchEnd(e) {
+        let end = e.changedTouches[0].screenX;
+        let start = this.startPoint;
+        let delta = start - end;
+        if (delta > 10) {
+          this.nextPage();
+        } else if (delta < -10) {
+          this.previousPage();
+        }
+        this.move = 0;
+      },
+      touchMove(e) {
+        this.move = e.changedTouches[0].screenX - this.startPoint;
+      },
       created() {
         this.calculateTotalPage();
       },
@@ -118,125 +141,6 @@
     }
   }
 </script>
-
 <style scoped lang="scss">
-  $--content-top: 30px;
-  $--content-bottom: 20px;
-  $--reader-cover-width: calc(100% / 3);
-  $--reader-cover-height: calc(100% - 2rem);
-
-  @mixin absolute-full {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-  }
-
-  .lazy-reader {
-    @include absolute-full;
-    touch-action: pan-y;
-    .lazy-page-statistical {
-      font-size: .75rem;
-      padding: 1px 16px;
-      float: left;
-      height: 18px;
-      line-height: 18px;
-    }
-    .lazy-more {
-      font-size: .75rem;
-      padding: 1px 16px;
-      float: right;
-      height: 18px;
-      line-height: 18px;
-    }
-    .lazy-read-book-name {
-      font-size: .75rem;
-      font-weight: 400;
-      padding: 2px 18px;
-    }
-    .lazy-reader-cover {
-      @include absolute-full;
-      z-index: 1000;
-      .lazy-cover-left {
-        @include absolute-full;
-        width: $--reader-cover-width;
-        height: $--reader-cover-height;
-        right: unset;
-        margin: auto;
-      }
-
-      .lazy-cover-centre {
-        @include absolute-full;
-        left: $--reader-cover-width;
-        width: $--reader-cover-width;
-        height: $--reader-cover-width;
-        right: unset;
-        margin: auto;
-      }
-
-      .lazy-cover-right {
-        @include absolute-full;
-        width: $--reader-cover-width;
-        height: $--reader-cover-height;
-        left: unset;
-        margin: auto;
-      }
-
-      .lazy-cover-top {
-        @include absolute-full;
-        bottom: unset;
-        height: $--content-top;
-      }
-
-      .lazy-cover-bottom {
-        @include absolute-full;
-        top: unset;
-        height: $--content-bottom;
-      }
-    }
-
-    .lazy-page-read-content {
-      position: absolute;
-      top: $--content-top;
-      bottom: $--content-bottom;
-      overflow: hidden;
-      border-top: 0;
-    }
-
-    .lazy-read-article {
-      font-size: 1rem;
-      line-height: 1.8;
-      overflow: hidden;
-      min-height: 100%;
-      height: 100%;
-      text-align: justify;
-    }
-
-    .lazy-reader-book {
-      overflow: visible;
-      columns: calc(100vw - 32px) 1;
-      column-gap: 16px;
-      min-height: inherit;
-      height: 100%;
-      -webkit-columns: calc(100vw - 32px) 1;
-      -webkit-column-gap: 16px;
-    }
-
-    p {
-      word-break: break-all;
-      font-size: 1em;
-      margin: .1em 0;
-    }
-  }
-
-  .transitionLeft-enter, .transitionRight-leave-active {
-    -webkit-transform: translate(100%, 0);
-    transform: translate(100%, 0);
-  }
-
-  .transitionLeft-leave-active, .transitionRight-enter {
-    -webkit-transform: translate(-100%, 0);
-    transform: translate(-100%, 0);
-  }
+  @import "../../../styles/scss/reader-book";
 </style>
