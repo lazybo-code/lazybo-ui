@@ -1,7 +1,7 @@
 {
   "name": "lazybo-ui",
   "description": "基于 vue-cli3 的 UI 组件",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": false,
   "main": "lib/index.js",
   "style": "lib/theme/index.css",
@@ -23,7 +23,8 @@
     "lib",
     "src",
     "packages",
-    "types"
+    "types",
+    "styles"
   ],
   "dependencies": {},
   "devDependencies": {
