@@ -1,11 +1,11 @@
 <template>
-  <div class="lazy-reader" :class="className">
+  <div class="la-reader" :class="className">
     <!-- 读取文字区域 -->
-    <content class="lazy-page-read-content">
-      <article class="lazy-read-article" :style="{margin: `0 ${clearance}px`}">
+    <content class="la-page-read-content">
+      <article class="la-read-article" :style="{margin: `0 ${clearance}px`}">
         <section
           ref="readerBook"
-          class="lazy-reader-book"
+          class="la-reader-book"
           :style="{transform: `translateX(${translateX+move}px)`, transition: `all ${animationSeconds}s ease`, fontSize: `${fontSize}rem`}">
           <h3 v-if="title">{{ title }}</h3>
           <p v-for="(item, index) in readerBook" :key="index">{{ item }}</p>
@@ -14,26 +14,26 @@
     </content>
     <!-- 全屏覆盖区域 -->
     <div
-      class="lazy-reader-cover"
+      class="la-reader-cover"
       @touchstart="touchStart"
       @touchend="touchEnd"
       @touchmove="touchMove">
       <!-- 上方数据 -->
-      <div class="lazy-cover-top">
-        <h1 v-if="pageCurrent > 0" class="lazy-read-book-name">
+      <div class="la-cover-top">
+        <h1 v-if="pageCurrent > 0" class="la-read-book-name">
           <slot name="cover-top" :data="slotData">{{ title }}</slot>
         </h1>
       </div>
       <!-- 三块区域 左 中 右 -->
-      <div @click="previousPage" class="lazy-cover-left"/>
-      <div @click="onCenter" class="lazy-cover-centre"/>
-      <div @click="nextPage" class="lazy-cover-right"/>
+      <div @click="previousPage" class="la-cover-left"/>
+      <div @click="onCenter" class="la-cover-centre"/>
+      <div @click="nextPage" class="la-cover-right"/>
       <!-- 下方数据 -->
-      <div class="lazy-cover-bottom">
-        <span class="lazy-page-statistical">
+      <div class="la-cover-bottom">
+        <span class="la-page-statistical">
           <slot name="cover-bottom-left" :data="slotData">{{ pageCurrent + 1 }}/{{ pageTotal }}</slot>
         </span>
-        <span class="lazy-more">
+        <span class="la-more">
           <slot name="cover-bottom-right" :data="slotData"/>
         </span>
       </div>

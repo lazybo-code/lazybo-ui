@@ -1,30 +1,30 @@
-@import "auxiliary";
-.lazy-reader {
+@import "variable";
+.la-reader {
   @include absolute-full;
   touch-action: pan-y;
-  .lazy-page-statistical {
+  .la-page-statistical {
     font-size: .75rem;
     padding: 1px 16px;
     float: left;
     height: 18px;
     line-height: 18px;
   }
-  .lazy-more {
+  .la-more {
     font-size: .75rem;
     padding: 1px 16px;
     float: right;
     height: 18px;
     line-height: 18px;
   }
-  .lazy-read-book-name {
+  .la-read-book-name {
     font-size: .75rem;
     font-weight: 400;
     padding: 2px 18px;
   }
-  .lazy-reader-cover {
+  .la-reader-cover {
     @include absolute-full;
     z-index: 1000;
-    .lazy-cover-left {
+    .la-cover-left {
       @include absolute-full;
       width: $--reader-book-cover-width;
       height: $--reader-book-cover-height;
@@ -32,7 +32,7 @@
       margin: auto;
     }
 
-    .lazy-cover-centre {
+    .la-cover-centre {
       @include absolute-full;
       left: $--reader-book-cover-width;
       width: $--reader-book-cover-width;
@@ -41,7 +41,7 @@
       margin: auto;
     }
 
-    .lazy-cover-right {
+    .la-cover-right {
       @include absolute-full;
       width: $--reader-book-cover-width;
       height: $--reader-book-cover-height;
@@ -49,20 +49,20 @@
       margin: auto;
     }
 
-    .lazy-cover-top {
+    .la-cover-top {
       @include absolute-full;
       bottom: unset;
       height: $-reader-book-content-top;
     }
 
-    .lazy-cover-bottom {
+    .la-cover-bottom {
       @include absolute-full;
       top: unset;
       height: $-reader-book-content-bottom;
     }
   }
 
-  .lazy-page-read-content {
+  .la-page-read-content {
     position: absolute;
     top: $-reader-book-content-top;
     bottom: $-reader-book-content-bottom;
@@ -70,7 +70,7 @@
     border-top: 0;
   }
 
-  .lazy-read-article {
+  .la-read-article {
     font-size: 1rem;
     line-height: 1.8;
     overflow: hidden;
@@ -79,7 +79,7 @@
     text-align: justify;
   }
 
-  .lazy-reader-book {
+  .la-reader-book {
     overflow: visible;
     columns: calc(100vw - 32px) 1;
     column-gap: 16px;

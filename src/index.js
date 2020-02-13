@@ -1,10 +1,12 @@
 import ReaderBook from '../packages/reader-book/index.js'
 import Button from '../packages/button/index.js'
+import ButtonGroup from '../packages/button-group/index.js'
 import { version } from '../package.json'
 
 const components = [
   ReaderBook,
-  Button
+  Button,
+  ButtonGroup
 ];
 
 const install = function (Vue) {
@@ -25,5 +27,6 @@ export default {
   version,
   install,
   ReaderBook,
-  Button
+  Button,
+  ButtonGroup
 }

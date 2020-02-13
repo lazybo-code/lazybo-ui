@@ -1,5 +1,4 @@
 const { run } = require('runjs');
-const libList = require('../src/lib-list.js')
 const { addons } = require('../config/rollup.build.config.js');
 const { getAssetsPath, chalkConsole, resolve, fsExistsSync, getComponentEntries } = require('./utils');
 const { styleOutputPath } = require('../config/index');
@@ -16,11 +15,12 @@ function build({ input, output } = {}, index, arr) {
   cssFiles.push(`${output}.css`)
 }
 
-let pkg = [];
-
+let pkg = [
+  {input: 'src/index.js', output: 'index'}
+];
+const libList = getComponentEntries('packages');
 Object.keys(libList).forEach((moduleName) => {
-  const { input, output } = libList[moduleName];
-  pkg.push({ input, output })
+  pkg.push({ input: libList[moduleName], output: moduleName })
 });
 pkg = pkg.concat(addons);
 pkg.forEach(build);

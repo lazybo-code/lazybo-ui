@@ -14,8 +14,13 @@ const routes = [
     path: '/reader-book',
     name: 'reader-book-demo',
     component: () => import('../views/reader-book-demo.vue')
+  },
+  {
+    path: '/button',
+    name: 'button-demo',
+    component: () => import('../views/button-demo.vue')
   }
-]
+];
 
 const router = new VueRouter({
   routes
