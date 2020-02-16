@@ -1,14 +1,39 @@
 <template>
-  <reader-book ref="readerBook" :title="title" :content="content"/>
+  <div>
+    <reader-book ref="readerBook" :title="title" :content="content" @onCenter="onCenter"/>
+    <la-drawer
+      v-model="show"
+      direction="ttb"
+      :bottom="40"
+      :body-padding="0"
+      color="#fff"
+      background-color="rgba(0,0,0,.9)"
+      wrapperClosable>
+      嘿嘿嘿嘿
+    </la-drawer>
+    <la-drawer
+      v-model="show"
+      direction="btt"
+      :top="40"
+      :body-padding="0"
+      color="#fff"
+      background-color="rgba(0,0,0,.9)"
+      wrapperClosable>
+      嘿嘿嘿嘿
+    </la-drawer>
+  </div>
 </template>
 
 <script>
   import ReaderBook from '@p/reader-book/src/main.vue';
+  import LaDrawer from '@p/drawer/src/main.vue'
   export default {
     components: {
-      ReaderBook
+      ReaderBook,
+      LaDrawer
     },
     data: () => ({
+      show: false,
       title: '我有一群地球玩家',
       content: `“开工了开工了哈！”约德尔市中心的提莫商业区一栋办公大厦里，一家刚上市的游戏评测公司开始了一天的忙碌。
 　　在这家企业里，游戏评测人员高达两百多个，但依旧显得有些人手不够，经常加班都是常事，主要现在市场太大，这一行从业人员在全球已经有上千万人，但似乎离饱和还是尚远，每年仍旧有大量的毕业生投入这个行业。
@@ -59,6 +84,11 @@
 　　“累死本领主了！”只见那NPC居然自言自语道：“这傻叉终于走了！”随即对着空间道：“智能，这样真的能蒙混过关吗？”
 　　“领主放心！”基地里突然传出一道电子音：“领主只管耐心等待，不久后便会有源源不断的子民流入了!`,
     }),
+    methods: {
+      onCenter() {
+        console.log('123')
+      }
+    }
   }
 </script>
 <style scoped>

@@ -1,0 +1,17 @@
+@import "variable";
+.la-card {
+  border-radius: 4px;
+  border: 1px solid $lightGrayColor;
+  background-color: $whiteColor;
+  overflow: hidden;
+  color: $fontColor;
+  transition: .3s;
+  .la-card__header {
+    padding: 18px 20px;
+    border-bottom: 1px solid $lightGrayColor;
+    box-sizing: border-box;
+  }
+  .la-card__body {
+    padding: 20px;
+  }
+}

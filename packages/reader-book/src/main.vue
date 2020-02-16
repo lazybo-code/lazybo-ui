@@ -75,6 +75,9 @@
         return this.content.split(/\n/g);
       }
     },
+    created() {
+      this.calculateTotalPage();
+    },
     methods: {
       touchStart(e) {
         this.startPoint = e.touches[0].screenX;
@@ -92,9 +95,6 @@
       },
       touchMove(e) {
         this.move = e.changedTouches[0].screenX - this.startPoint;
-      },
-      created() {
-        this.calculateTotalPage();
       },
       previousPage() {
         if (this.noLeftRightClick) return;
@@ -129,7 +129,7 @@
         this.$emit('onToEnd', type);
       },
       onCenter() {
-        this.$emit('onCenter')
+        this.$emit('onCenter', this.slotData)
       },
       calculateTranslateX() {
         this.translateX = -(this.$refs.readerBook.offsetWidth + this.clearance) * (this.pageCurrent);
